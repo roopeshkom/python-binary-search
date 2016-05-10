@@ -1,7 +1,13 @@
 def info(ans, guess, count):
 	print "%d. Answer:%d, Guess:%d" % (count, ans, guess)
 
-print "Please enter the lower and upper bounds"
+def check_guess(guess, ans, lo, hi):
+	if guess > ans:
+		hi = max(lo, ((lo+hi)/2)-1)			
+	else:
+		lo  = min(hi, ((lo+hi)/2)+1)
+
+print "Please enter the lower and upper bounds (ex: 0 99)"
 x = raw_input('> ')
 lo, hi = x.split()
 lo = int(lo); hi = int(hi)
@@ -16,10 +22,8 @@ while True:
 		print "YAY! Finding the answer took me %d guesses." % count
 		break
 	else:
-		if guess > ans:
-			hi = max(lo, ((lo+hi)/2)-1)			
-		else:
-			lo  = min(hi, ((lo+hi)/2)+1)
+		check_guess()
 	count += 1
+
 
 
